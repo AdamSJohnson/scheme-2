@@ -1,0 +1,6 @@
+Welcome to the README
+
+The best way to use the file is:
+scm functions.scm
+
+This is the only way I used it. Thank you.
