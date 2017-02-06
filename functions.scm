@@ -126,7 +126,7 @@
 (define guess-my-number
     (lambda (x y z)
         (cond
-            ((> x y) (guess-my-number y x z))
+            ((> x y) (guess-my-number y x z)) ; A E S T H E T I C S ===vaporwave===
             
             ;if the range of number is 0 then there is only one possible value for the random
             ((= (- x y) 0 ) 
@@ -159,9 +159,9 @@
                 ((= g r) 
                     (display "You guessed my number in ")
                     (display z)
-                    (display " tries.")
-                    (newline)
-                    '_
+                    (display " tries")
+                    
+                    '. ;more A E S T H E T I C S
                 )
                 
                 ;number below lower threshold
