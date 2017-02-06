@@ -5,7 +5,7 @@
 (define mult1
     (lambda (x y)
 	(cond
-            ;x * y is the same as (y + y + ... + y) with x number of iterations
+        ;x * y is the same as (y + y + ... + y) with x number of iterations
 	    ;so first check if x is the value 0
 	    ((= x 0) 0)
 	    
@@ -30,6 +30,7 @@
 		(cond
 			;if x is null just return the empty list
 			((null? x) ())
+			
 			;same with y
 			((null? y) ())
 			
@@ -101,7 +102,7 @@
 ; adds a null thing to a list
 ; Param - x a list
 ; result a list with a null list added to it
-(define edd1
+(define a
 	(lambda (x)
 		(cons '() x)
 	)
@@ -125,6 +126,8 @@
 (define guess-my-number
     (lambda (x y z)
         (cond
+            ((> x y) (guess-my-number y x z))
+            
             ;if the range of number is 0 then there is only one possible value for the random
             ((= (- x y) 0 ) 
                 (game-loop x y z x)
@@ -186,7 +189,7 @@
                     
                     )
                     (newline)
-                    ;loop through the game again
+                    ;loop through the game againcccd ..
                     (game-loop x y (+ 1 z) r)
                 )
                 
