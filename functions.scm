@@ -1,7 +1,7 @@
 ; Adam Johnson
 ; Assignment 3
 ; 2/4/2017
-
+(require 'random)
 (define mult1
     (lambda (x y)
 	(cond
@@ -116,3 +116,83 @@
 		(cdr x)
 	)
 )
+
+; guess-my-number - generates a random number in an interval for the user to guess
+; params - x the lower bound
+;          y the upper bound
+;          z number of guess
+; results - none
+(define guess-my-number
+    (lambda (x y z)
+        (cond
+            ;if the range of number is 0 then there is only one possible value for the random
+            ((= (- x y) 0 ) 
+                (game-loop x y z x)
+            )
+            
+            (else (game-loop x y (+ z 1) ( + x (random (- (+ y 1) x)))))
+        )
+    )
+)
+;(guess-my-number 1 2 0)
+
+; game-loop is a recursive version of guess-my-number
+; Params -
+;    x- lower bound
+;    y- upper bound
+;    z- guesses made
+;    r- the value to guess
+(define game-loop
+    (lambda (x y z r)
+        ;prompt user for a number
+        (display "Guess my number: ")
+        ;read in a number
+        (let ((g (read)))
+            ;g is our number
+            (display g)
+            (newline)
+            (cond
+                ;victory condition
+                ((= g r) 
+                    (display "You guessed my number in ")
+                    (display z)
+                    (display " tries.")
+                    (newline)
+                    '_
+                )
+                
+                ;number below lower threshold
+                ((or (< g x) (> g y))
+                    (display g)
+                    (display " is out of range from ")
+                    (display x)
+                    (display " to ")
+                    (display y)
+                    (display ".")
+                    (newline)
+                    (game-loop x y (+ 1 z) r)
+                    
+                )
+                
+                ;otherwise we guessed in the range but we are either too high or too low
+                (else 
+                    (cond
+                        ((> g r)
+                            (display "Too high.")
+                        )
+                        (else 
+                            (display "Too low.")
+                        )
+                    
+                    )
+                    (newline)
+                    ;loop through the game again
+                    (game-loop x y (+ 1 z) r)
+                )
+                
+                
+            )
+        )
+    )
+)
+
